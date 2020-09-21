@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sticky Note </title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+</head>
+<body>
+    <div class="board" id="board">
+
+        <div class="note">
+            <div class="top-note">
+                <div class="pin"><img src="img/pin.png"></div>
+            </div>
+            <div class="note-content" id="note0">
+                Content here
+            </div>
+            <div class="option">
+                <input id="inputnote0" type="text" placeholder="Write here ...">
+                <button onClick="addLine(0)" class="btn-valid" id="btn-note"><i class="fas fa-check-square fa-2x"></i></button>
+            </div>
+        </div>
+
+        <div class="note note-empty">
+            <input type="text" id="inputAddNote">
+            <button id="btnAddNote" onClick="addNote()"> + </button>
+        </div>
+
+    </div>
+
+    <script>
+        const board = document.getElementById('board');
+        const inputLine = document.getElementById('inputNote');
+        var noteId = 0;
+        // var note = new Objet();
+        //     note.titre = "No title";
+        //     note.line[0] = "Line 1";
+        //     note.line[2] = "Line 2";
+        //     note.line[3] = "Line 3";
+
+        inputLine.addEventListener('keyup', function (event) {
+            console.log('hello');
+            console.log(document.activeElement.id);
+            if (event.keyCode == 13) {
+                if (document.getElementById('inputAddNote').value != "") {
+                    addNote();
+                }
+
+            }
+        });
+
+        function addLine(id) {
+            let targetId = "note" + id;
+            let inputId = "inputnote" + id;
+            let lineText = document.getElementById(inputId).value;
+
+            if (lineText != "") {
+                let noteContent = document.createElement('p');
+                noteContent.textContent = lineText;
+                document.getElementById(targetId).appendChild(noteContent);
+                document.getElementById('inputId').value = "";
+            }
+        };
+
+        function addNote() {
+            let noteLine = document.getElementById('inputAddNote').value;
+            
+            if (noteLine != "") {
+            //Increment note amount
+            noteId += 1;
+
+            //Create element
+            let newNote = document.createElement('div');
+            newNote.classList.add('note');
+
+            let topNote = document.createElement('div');
+            topNote.classList.add('top-note');
+            
+            let pin = document.createElement('div');
+            pin.classList.add('pin');
+            
+            let imgPin = document.createElement('img');
+            imgPin.src = "img/pin.png";
+        
+            let noteContent = document.createElement('div');
+            noteContent.classList.add('note-content');
+            noteContent.id = 'note' + noteId;
+            noteContent.textContent = document.getElementById('inputAddNote').value;
+
+            //Append all
+            pin.appendChild(imgPin);            
+            
+            topNote.appendChild(pin);
+
+            newNote.appendChild(topNote);
+            newNote.appendChild(noteContent);
+
+            //Add to board
+            board.appendChild(newNote);
+            }
+        }
+    </script>
+</body>
+</html>
