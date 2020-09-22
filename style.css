@@ -28,6 +28,8 @@ p {
     margin: -20px auto auto auto;
 }
 
+.pin img { filter: drop-shadow(2px 1px 3px rgba(0, 0, 0, 0.25)) }
+
 .note {
     margin: 20px;
     width: 250px;

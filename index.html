@@ -12,7 +12,7 @@
         <div class="note" id="0">
             <div class="top-note">
                 <div class="cross"><button onclick="deleteNote(0)" class="btn-note btn-cross"><i class="fas fa-times fa-lg"></i></button></div>
-                <div class="pin"><img src="img/pin.png"></div>
+                <div class="pin"><img src="img/pin_red.png"></div>
             </div>
             <div class="note-content" id="notecontent0">
                 Content here
@@ -32,6 +32,7 @@
     <script>
         const board = document.getElementById('board');
         const inputLine = document.getElementById('inputAddNote');
+        const pinList = ["pin_red", "pin_orange", "pin_yellow", "pin_green", "pin_blue", "pin_purple", "pin_white"]
         var noteId = 0;
         // var note = new Objet();
         //     note.titre = "No title";
@@ -101,7 +102,9 @@
             pin.classList.add('pin');
             
             let imgPin = document.createElement('img');
-            imgPin.src = "img/pin.png";
+            let randomImg = pinList[Math.floor(Math.random() * pinList.length)];
+            imgPin.src = "img/" + randomImg + ".png";
+            let randomNumber = Math.floor(Math.random() * 360) + 1;
         
             let noteContent = document.createElement('div');
             noteContent.classList.add('note-content');
