@@ -5,6 +5,10 @@ body {
     background-image: url('img/cardboard.jpg');
 }
 
+p {
+    animation-name: slide;
+    animation-duration: 0.3s;
+}
 ::placeholder { 
     font-size: 12px;
     padding: 3px; 
@@ -21,7 +25,7 @@ body {
 
 .pin {
     width: 20px;
-    margin: -10px auto auto auto;
+    margin: -20px auto auto auto;
 }
 
 .note {
@@ -86,17 +90,34 @@ body {
 }
 .option input[type="text"]:focus { outline: 0 }
 
-.btn-valid {
+.btn-note {
     color: rgba(0, 0, 0, 0.219);
     background-color: transparent;
     border: 0;
     transition: 0.2s;
 }
-.btn-valid:hover { 
+.btn-note:hover { 
     cursor: pointer;
     color: #00bd00;
 }
-.btn-valid:focus { outline: 0 }
+
+.btn-note:focus { outline: 0 }
+
+.top-note .cross {
+    position: relative;
+    left: 0;
+    text-align: end;
+}
+
+.btn-cross:hover {
+    color: red;
+}
+
+.throwout {
+    pointer-events: none;
+    animation-name: throw;
+    animation-duration: 0.5s;
+}
 
 @keyframes move {
     25% { transform: rotate(3deg) }
@@ -106,4 +127,25 @@ body {
 @keyframes bump {
     0% { transform: scale(0) }
     100% { transform: scale(100%) }
+}
+
+@keyframes slide {
+    0% { 
+        transform: translateX(50px);
+        opacity: 0;
+    }
+    100% { 
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes throw {
+    0% {
+        transform: translateX(0) rotate(0);
+        opacity: 1;
+    }
+    100% { transform: translateX(-350px) rotate(25deg);
+        opacity: 0;
+    }
 }
