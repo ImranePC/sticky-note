@@ -18,8 +18,8 @@
                 Content here
             </div>
             <div class="option">
-                <input id="inputnote0" type="text" placeholder="Write here ...">
-                <button onClick="addLine(0)" class="btn-valid" id="btn-note"><i class="fas fa-check-square fa-2x"></i></button>
+                <input id="inputnote0" type="text" placeholder="...">
+                <button onClick="addLine(0)" class="btn-valid"><i class="fas fa-check-square fa-2x"></i></button>
             </div>
         </div>
 
@@ -32,7 +32,7 @@
 
     <script>
         const board = document.getElementById('board');
-        const inputLine = document.getElementById('inputNote');
+        const inputLine = document.getElementById('inputAddNote');
         var noteId = 0;
         // var note = new Objet();
         //     note.titre = "No title";
@@ -41,17 +41,16 @@
         //     note.line[3] = "Line 3";
 
         inputLine.addEventListener('keyup', function (event) {
-            console.log('hello');
-            console.log(document.activeElement.id);
             if (event.keyCode == 13) {
                 if (document.getElementById('inputAddNote').value != "") {
+                    console.log("Ajout d'une note");
                     addNote();
                 }
-
             }
         });
 
         function addLine(id) {
+            console.log(id);
             let targetId = "note" + id;
             let inputId = "inputnote" + id;
             let lineText = document.getElementById(inputId).value;
@@ -60,12 +59,14 @@
                 let noteContent = document.createElement('p');
                 noteContent.textContent = lineText;
                 document.getElementById(targetId).appendChild(noteContent);
-                document.getElementById('inputId').value = "";
+                document.getElementById(inputId).value = "";
+                console.log('ajout dune line');
             }
         };
 
         function addNote() {
             let noteLine = document.getElementById('inputAddNote').value;
+            document.getElementById('inputAddNote').value = "";
             
             if (noteLine != "") {
             //Increment note amount
@@ -74,6 +75,7 @@
             //Create element
             let newNote = document.createElement('div');
             newNote.classList.add('note');
+            newNote.id = noteId;
 
             let topNote = document.createElement('div');
             topNote.classList.add('top-note');
@@ -87,15 +89,31 @@
             let noteContent = document.createElement('div');
             noteContent.classList.add('note-content');
             noteContent.id = 'note' + noteId;
-            noteContent.textContent = document.getElementById('inputAddNote').value;
+            noteContent.textContent = noteLine;
+            
+            let option = document.createElement('div');
+            option.classList.add('option');
+            
+            let inputNote = document.createElement('input');
+            inputNote.type = 'text';
+            inputNote.id = 'inputnote' + noteId;
+
+            let addnoteBtn = document.createElement('button');
+            addnoteBtn.onclick = function () { addLine(newNote.id); }
+            addnoteBtn.classList.add('btn-valid');
+            addnoteBtn.innerHTML = "<i class='fas fa-check-square fa-2x'></i>";
+            addnoteBtn.placeholder = "...";
 
             //Append all
-            pin.appendChild(imgPin);            
-            
+            pin.appendChild(imgPin);      
             topNote.appendChild(pin);
+
+            option.appendChild(inputNote);
+            option.appendChild(addnoteBtn);
 
             newNote.appendChild(topNote);
             newNote.appendChild(noteContent);
+            newNote.appendChild(option);
 
             //Add to board
             board.appendChild(newNote);
