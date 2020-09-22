@@ -15,7 +15,7 @@
                 <div class="pin"><img src="img/pin_red.png"></div>
             </div>
             <div class="note-content" id="notecontent0">
-                Content here
+                <p>Hello world ...</p>
             </div>
             <div class="option">
                 <input id="inputnote0" type="text" placeholder="...">
@@ -25,7 +25,7 @@
 
         <div class="note note-empty">
             <input type="text" id="inputAddNote">
-            <button id="btnAddNote" onClick="addNote()"> + </button>
+            <button class="btn-add" id="btnAddNote" onClick="addNote()"><i class="fas fa-plus-square fa-2x"></i></button>
         </div>
     </div>
 
@@ -43,14 +43,12 @@
         inputLine.addEventListener('keyup', function (event) {
             if (event.keyCode == 13) {
                 if (document.getElementById('inputAddNote').value != "") {
-                    console.log("Ajout d'une note");
                     addNote();
                 }
             }
         });
 
         function addLine(id) {
-            console.log(id);
             let targetId = "notecontent" + id;
             let inputId = "inputnote" + id;
             let lineText = document.getElementById(inputId).value;
@@ -60,7 +58,6 @@
                 noteContent.textContent = lineText;
                 document.getElementById(targetId).appendChild(noteContent);
                 document.getElementById(inputId).value = "";
-                console.log('ajout dune line');
             }
         };
 
@@ -76,17 +73,20 @@
 
         function addNote() {
             let noteLine = document.getElementById('inputAddNote').value;
-            document.getElementById('inputAddNote').value = "";
             
             if (noteLine != "") {
+            
+            //Clear input
+            document.getElementById('inputAddNote').value = "";
             //Increment note amount
             noteId += 1;
 
-            //Create element
+            //Create note element
             let newNote = document.createElement('div');
             newNote.classList.add('note');
             newNote.id = noteId;
-
+            
+            ////Top part
             let topNote = document.createElement('div');
             topNote.classList.add('top-note');
 
@@ -105,12 +105,16 @@
             let randomImg = pinList[Math.floor(Math.random() * pinList.length)];
             imgPin.src = "img/" + randomImg + ".png";
             let randomNumber = Math.floor(Math.random() * 360) + 1;
-        
+            
+            ////Note Content
             let noteContent = document.createElement('div');
             noteContent.classList.add('note-content');
             noteContent.id = 'notecontent' + noteId;
-            noteContent.textContent = noteLine;
+
+            let noteContentp = document.createElement('p');
+            noteContentp.textContent = noteLine;
             
+            ////Bottom part
             let option = document.createElement('div');
             option.classList.add('option');
             
@@ -134,12 +138,16 @@
             option.appendChild(inputNote);
             option.appendChild(addnoteBtn);
 
+            noteContent.appendChild(noteContentp)
+
             newNote.appendChild(topNote);
             newNote.appendChild(noteContent);
             newNote.appendChild(option);
 
             //Add to board
             board.appendChild(newNote);
+            } else {
+                document.getElementById('inputAddNote').focus();
             }
         }
     </script>

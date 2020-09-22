@@ -2,13 +2,18 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 body {
-    background-image: url('img/cardboard.jpg');
+    background-color: rgb(168, 143, 113);
 }
 
 p {
     animation-name: slide;
     animation-duration: 0.3s;
 }
+
+p:hover {
+    text-decoration: line-through;
+}
+
 ::placeholder { 
     font-size: 12px;
     padding: 3px; 
@@ -20,7 +25,6 @@ p {
     flex-wrap: wrap;
     align-items: flex-start;
     width: 100%;
-    border: 1px dotted white;
 }
 
 .pin {
@@ -28,7 +32,11 @@ p {
     margin: -20px auto auto auto;
 }
 
-.pin img { filter: drop-shadow(2px 1px 3px rgba(0, 0, 0, 0.25)) }
+.pin img { 
+    filter: drop-shadow(2px 1px 3px rgba(0, 0, 0, 0.25));
+    user-select: none;
+    pointer-events: none;
+}
 
 .note {
     margin: 20px;
@@ -39,6 +47,8 @@ p {
     flex-basis: 0 0;
     animation-name: bump;
     animation-duration: 0.3s;
+    overflow: hidden;
+    box-shadow: 0 7px 10px rgba(0, 0, 0, 0.288);
 }
 
 .note-content {
@@ -46,16 +56,40 @@ p {
 }
 
 .note-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
     order: 999;
-    background-color: rgba(0, 0, 0, 0.267);
+    background-color: rgba(0, 0, 0, 0.25);
+    width: 200px;
+    height: 60px;
+    box-shadow: 0 0;
 }
+
+.note-empty input[type="text"] {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.25);
+    border: 0;
+    width: 100%;
+}
+
+.note-empty input[type="text"]:focus { outline: 1px solid rgba(255, 255, 255, 0.5) }
 
 .note li {
     margin-left: -15px;
 }
 
-.note:hover .option {
+.option {
     display: flex;
+    height: 0px;
+    overflow: hidden;
+    transition: 0.2s;
+}
+
+.note:hover .option {
+    height: 30px;
 }
 
 .top-note {
@@ -64,16 +98,13 @@ p {
     padding: 5px;
 }
 
-.option {
-    display: none;
-}
-
 .top-note input[type='text'] {
     background-color: transparent;
     border: 0;
     font-weight: bold;
     font-size: 16px;
 }
+
 .top-note input[type='text']:focus {
     outline: 0;
     font-weight: normal;
@@ -90,6 +121,7 @@ p {
     color: rgb(58, 58, 58);
     width: 100%;
 }
+
 .option input[type="text"]:focus { outline: 0 }
 
 .btn-note {
@@ -98,6 +130,7 @@ p {
     border: 0;
     transition: 0.2s;
 }
+
 .btn-note:hover { 
     cursor: pointer;
     color: #00bd00;
@@ -120,6 +153,16 @@ p {
     animation-name: throw;
     animation-duration: 0.5s;
 }
+
+.btn-add {
+    border: 0;
+    color: white;
+    background-color: transparent;
+    cursor: pointer;
+    padding: 0;
+}
+
+.btn-add:focus { outline: 0 }
 
 @keyframes move {
     25% { transform: rotate(3deg) }
