@@ -1,13 +1,16 @@
 * {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 0;
+    margin: 0;
 }
 body {
-    background-color: rgb(168, 143, 113);
+    background-color: rgb(71, 71, 71);
 }
 
 p {
     animation-name: slide;
     animation-duration: 0.3s;
+    margin: 5px;
 }
 
 p:hover {
@@ -19,9 +22,17 @@ p:hover {
     padding: 3px; 
 }
 
+.navbar {
+    background-color: #272727;
+    box-shadow: 1px 0 8px #272727;
+    color: white;
+    padding: 20px;
+    font-size: 24px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
 .board {
     display: flex;
-    justify-content: flex-start;
     flex-wrap: wrap;
     align-items: flex-start;
     width: 100%;
@@ -129,6 +140,7 @@ p:hover {
     background-color: transparent;
     border: 0;
     transition: 0.2s;
+    margin: 0 5px 5px 5px
 }
 
 .btn-note:hover { 
@@ -192,5 +204,12 @@ p:hover {
     }
     100% { transform: translateX(-350px) rotate(25deg);
         opacity: 0;
+    }
+}
+
+/* Media queries */
+@media (max-width: 600px) {
+    .board {
+      justify-content: center;
     }
 }
