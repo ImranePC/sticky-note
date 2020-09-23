@@ -3,6 +3,12 @@ const inputLine = document.getElementById('inputAddNote');
 const pinList = ["pin_red", "pin_orange", "pin_yellow", "pin_green", "pin_blue", "pin_purple", "pin_white"]
 var noteId = 0;
 
+if (getCookie('theme')) {
+    setTheme(getCookie('theme'));
+} else {
+    document.cookie="theme=dark; expires=Mon, 31 Dec 2100 20:00:00 UTC"; 
+}
+
 inputLine.addEventListener('keyup', function (event) {
     if (event.keyCode == 13) {
         if (document.getElementById('inputAddNote').value != "") {
@@ -111,5 +117,36 @@ function addNote() {
     board.appendChild(newNote);
     } else {
         document.getElementById('inputAddNote').focus();
+    }
+}
+
+function getCookie (cname) {
+    let value = `; ${document.cookie}`;
+    let parts = value.split(`; ${cname}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
+function setTheme(theme) {
+    //Toggle theme button
+    if (theme == 'toggle') {
+        theme = getCookie('theme');
+        if (theme == 'dark') {
+            theme = 'light';
+        } else {
+            theme = 'dark';
+        }
+    }
+    //Set defined theme
+    console.log(theme);
+    if (theme == 'dark') {
+        document.cookie="theme=dark";
+        document.documentElement.style.setProperty('--bgcolor','#474747');
+        document.documentElement.style.setProperty('--navcolor','#272727');
+        document.documentElement.style.setProperty('--txtcolor','white'); 
+    } else {
+        document.cookie="theme=light";
+        document.documentElement.style.setProperty('--bgcolor','#f5f5f5');
+        document.documentElement.style.setProperty('--navcolor','#FFF7D1');
+        document.documentElement.style.setProperty('--txtcolor','#3a3a3a');  
     }
 }

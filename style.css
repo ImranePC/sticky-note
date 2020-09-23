@@ -1,12 +1,30 @@
-* {
+:root {
+    --navcolor: #272727;
+    --bgcolor: #474747;
+    --txtcolor:  white;    
+}
+* { 
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     padding: 0;
     margin: 0;
 }
 body {
-    background-color: rgb(71, 71, 71);
+    background-color: var(--bgcolor);
 }
 
+a {
+    color: var(--txtcolor);
+    font-size: 16px;
+    text-decoration: none;
+    font-weight: 100;
+    transition: 0.2s;
+    opacity: 0.5;
+}
+a:hover { 
+    opacity: 1;
+    cursor: pointer;
+}
+    
 p {
     animation-name: slide;
     animation-duration: 0.3s;
@@ -23,12 +41,23 @@ p:hover {
 }
 
 .navbar {
-    background-color: #272727;
-    box-shadow: 1px 0 8px #272727;
-    color: white;
+    display: flex;
+    background-color: var(--navcolor);
+    box-shadow: 1px 0 8px #47474770;
+    color: var(--txtcolor);
     padding: 20px;
     font-size: 24px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+    
+.navbar div { padding: 0 15px 0 15px }
+.navbar .brand {
+    font-weight: 500;
+    text-decoration: underline;
+}
+.navbar .link {
+    text-align: center;
+    font-weight: 300;
 }
 
 .board {
@@ -59,7 +88,7 @@ p:hover {
     animation-name: bump;
     animation-duration: 0.3s;
     overflow: hidden;
-    box-shadow: 0 7px 10px rgba(0, 0, 0, 0.288);
+    box-shadow: 0 7px 10px rgba(0, 0, 0, 0.103);
 }
 
 .note-content {
@@ -129,7 +158,7 @@ p:hover {
     border-radius: 0;
     padding: 0 5px 0 5px;
     background-color: rgba(0, 0, 0, 0.219);
-    color: rgb(58, 58, 58);
+    color: #3a3a3a;
     width: 100%;
 }
 
