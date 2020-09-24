@@ -137,7 +137,6 @@ function setTheme(theme) {
         }
     }
     //Set defined theme
-    console.log(theme);
     if (theme == 'dark') {
         document.cookie="theme=dark";
         document.documentElement.style.setProperty('--bgcolor','#474747');
@@ -148,5 +147,15 @@ function setTheme(theme) {
         document.documentElement.style.setProperty('--bgcolor','#f5f5f5');
         document.documentElement.style.setProperty('--navcolor','#FFF7D1');
         document.documentElement.style.setProperty('--txtcolor','#3a3a3a');  
+    }
+}
+
+function removeAllNote() {
+    var confirm = window.confirm("Remove all note ?");
+    if (confirm == true) {
+        notes = document.getElementsByClassName("note");
+        while(notes[0]) {
+            notes[0].parentNode.removeChild(notes[0]);
+        }
     }
 }

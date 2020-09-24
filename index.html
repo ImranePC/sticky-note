@@ -13,6 +13,7 @@
         <div class="link"><a target="_blank" href="https://github.com/ImranePC/sticky-note"><i class="fab fa-github fa-lg"></i></a></div>
         <div class="link"><a onclick="setTheme('toggle')"><i class="far fa-lightbulb fa-lg"></i></a></div>
     </div>
+    <button onclick="removeAllNote()" class="remove-btn"><i class="fas fa-eraser fa-lg"></i></button>
 
     <div class="board" id="board">
         <div class="note" id="0">
@@ -29,7 +30,7 @@
             </div>
         </div>
 
-        <div class="note note-empty">
+        <div class="add-box">
             <input type="text" id="inputAddNote">
             <button class="btn-add" id="btnAddNote" onClick="addNote()"><i class="fas fa-plus-square fa-2x"></i></button>
         </div>

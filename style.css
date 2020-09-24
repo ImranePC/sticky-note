@@ -95,7 +95,8 @@ p:hover {
     padding: 10px;
 }
 
-.note-empty {
+.add-box {
+    margin: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -108,14 +109,14 @@ p:hover {
     box-shadow: 0 0;
 }
 
-.note-empty input[type="text"] {
+.add-box input[type="text"] {
     color: white;
     background-color: rgba(255, 255, 255, 0.25);
     border: 0;
     width: 100%;
 }
 
-.note-empty input[type="text"]:focus { outline: 1px solid rgba(255, 255, 255, 0.5) }
+.add-box input[type="text"]:focus { outline: 1px solid rgba(255, 255, 255, 0.5) }
 
 .note li {
     margin-left: -15px;
@@ -204,6 +205,24 @@ p:hover {
 }
 
 .btn-add:focus { outline: 0 }
+
+.remove-btn {
+    padding: 5px;
+    border: 0;
+    border-radius: 0 0 10px 0;
+    background-color: rgb(255, 184, 196);
+    color: white;
+    transition: 0.2s;
+}
+
+.remove-btn:hover {
+    cursor: pointer;
+    background-color: rgb(179, 179, 179);
+}
+
+.remove-btn:focus {
+    outline: 0;
+}
 
 @keyframes move {
     25% { transform: rotate(3deg) }
